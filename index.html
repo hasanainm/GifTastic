@@ -31,6 +31,9 @@
 
   <script type="text/javascript">
 
+    $(document).ready(function(){
+
+
 
     var nbaPlayers = ["James Harden", "Kobe Bryant", "Michael Jordan", "LeBron James", "Russel Westbrook", "Damian Lillard", "Giannis Antetokounmpo", "Kyrie Irving", "Stephen Curry", "Kevin Durant"];
 
@@ -63,6 +66,25 @@
           var results = response.data;
           console.log(results);
 
+         $(".player-image").empty();
+
+        for(var i = 0; i < results.length; i++) {
+          var newP = $("<p>");
+
+          newP.text("Rating: " + results[i].rating);
+
+          var playerImage = $("<img>");
+
+          playerImage.attr("src", results[i].images.fixed_height.url);
+
+          $(".player-image").append(newP);
+          newP.append(playerImage);
+
+          
+
+
+        }
+
         
 
 
@@ -84,6 +106,7 @@
       nbaPlayers.push(players);
 
       createButtons();
+      
 
 
 
@@ -93,7 +116,8 @@
 
 
     createButtons();
-
+    
+    })
 
 
 
