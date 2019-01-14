@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>NBA Players</title>
+  <link href="/Users/SahraanMohammed/Desktop/hasanainm.github.io/GifTastic/style.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+
+
+<body>
+
+  <div id="giphy-view"></div>
+  <br>
+
+
+  <form class="text-right" id="giphy-form">
+    <label for="giphy-input" id="label">Add a player name!</label>
+    <br>
+    <input type="text" id="giphy-input">
+    <br>
+    <br>
+
+    <button type="button" id="add-button" class="btn btn-primary btn-sm">Submit</button>
+
+  </form>
+
+  <div class="player-image"></div>
+
+
+  <script type="text/javascript">
+
+
+    var nbaPlayers = ["James Harden", "Kobe Bryant", "Michael Jordan", "LeBron James", "Russel Westbrook", "Damian Lillard", "Giannis Antetokounmpo", "Kyrie Irving", "Stephen Curry", "Kevin Durant"];
+
+    function createButtons() {
+
+      $("#giphy-view").empty()
+
+      for (var i = 0; i < nbaPlayers.length; i++) {
+        // console.log(nbaPlayers[i]);
+
+        var nba = $("<button>");
+        nba.addClass("btn btn-info specific");
+        nba.attr("data-name", nbaPlayers[i]);
+        nba.text(nbaPlayers[i]);
+        $("#giphy-view").append(nba);
+
+      }
+
+      $(".specific").on("click", function () {
+        var player = $(this).attr("data-name");
+
+        var queryUrl = "https://api.giphy.com/v1/gifs/search?q=" + player + "&api_key=dc6zaTOxFJmzC&limit=10";
+
+        $.ajax({
+          url: queryUrl,
+          method: "GET"
+        }).then(function (response) {
+          console.log(response);
+
+          var results = response.data;
+          console.log(results);
+
+        
+
+
+        })
+      })
+
+
+    }
+
+
+    $("#add-button").on("click", function (e) {
+
+      e.preventDefault();
+
+      var players = $("#giphy-input")
+        .val()
+        .trim();
+
+      nbaPlayers.push(players);
+
+      createButtons();
+
+
+
+    })
+
+
+
+
+    createButtons();
+
+
+
+
+
+
+
+
+
+  </script>
+</body>
+
+</html>
