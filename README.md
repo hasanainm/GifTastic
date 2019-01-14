@@ -1,1 +1,3 @@
 # GifTastic
+
+This assignment will allow a user to input any basketball player name into the text-box, which in return will give the user a result of 10 gifs. The gifs are still and in order to animate the gifs, the user must click on the image for it to constantly animate. The user can store buttons on the top of the page. Whenever the user has the need to click the button, it will show gifs for that particular name of the button when clicked on. 
